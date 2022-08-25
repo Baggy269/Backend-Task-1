@@ -3,6 +3,7 @@ package org.sumerge;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args){
@@ -15,7 +16,8 @@ public class Main {
 
         List<Student> students = Arrays.asList(mohamed,ahmed,adel);
 
-        UsingCode usingCode = () -> {
+        Runnable usingCode = () -> {
+            System.out.print("Course code: ");
             Scanner input = new Scanner(System.in);
             String courseCode = input.nextLine();
             if(courseCode.length()!=3) {
@@ -26,12 +28,12 @@ public class Main {
                     .forEach(student -> System.out.println(student + "\n"+"------------------------"));
         };
 
-        UsingCourse usingCourse = (Course course) -> students.stream().filter(student -> student.courses.contains(course))
+        Consumer<Course> usingCourse = (Course course) -> students.stream().filter(student -> student.courses.contains(course))
                 .forEach(student -> System.out.println(student + "\n"+"------------------------"));
 
         // input course code via scanner
-        usingCode.getEnrolled();
+        usingCode.run();
         // pass course object (xyz or abc)
-        //usingCourse.getEnrolled(xyz);
+        //usingCourse.accept(xyz);
     }
 }
