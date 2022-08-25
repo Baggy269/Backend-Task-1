@@ -3,7 +3,7 @@ package org.sumerge;
 public class Course {
     String code;
     String name;
-    static String college = "FCISASU";
+    static final String college = "FCISASU";
 
     public Course(String code, String name){
         if(code.length()==3)
